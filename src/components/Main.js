@@ -324,7 +324,7 @@ export default function Main() {
               reset()
             }}
           >
-            <span className={`icon-shuffle`} />
+            <span className={`icon-next2`} />
           </Icon>
         </div>
         <TimeStrip {...{ tMin, tMax, chaosTimer }} />

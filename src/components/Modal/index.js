@@ -55,7 +55,7 @@ export default function Modal(props) {
             onClick={props.onClose}
             style={{ position: "relative", cursor: "pointer" }}
           >
-            <span>X</span>
+            <span className="icon-cross" />
             <div
               style={{
                 position: "absolute",

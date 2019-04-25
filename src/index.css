@@ -1,4 +1,5 @@
-@import './icomoon.css';
+@import '../node_modules/reset-css/reset.css';
+@import './icomoon/style.css';
 @import './components/Main.css';
 @import './components/TextInput/index.css';
 @import './components/Slider/index.css';
