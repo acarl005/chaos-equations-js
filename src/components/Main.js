@@ -182,6 +182,7 @@ export default function Main() {
                 <Checkbox
                   value={repeat}
                   onChange={() => setRepeat(repeat => !repeat)}
+                  id="rep-cur-params"
                 >
                   Repeat Current Params
                 </Checkbox>
@@ -262,6 +263,7 @@ export default function Main() {
                 <Checkbox
                   value={showStats}
                   onChange={() => setShowStats(showStats => !showStats)}
+                  id="show-fps"
                 >
                   Show FPS
                 </Checkbox>
@@ -270,6 +272,7 @@ export default function Main() {
                 <Checkbox
                   value={showTransformStats}
                   onChange={() => setShowTransformStats(showTransformStats => !showTransformStats)}
+                  id="show-xform"
                 >
                   Show Transform
                 </Checkbox>
