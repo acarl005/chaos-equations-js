@@ -150,7 +150,7 @@ export default function Main() {
         </div>
         <ParamEquation {...{ params }} />
         <div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", marginTop: "10px" }}>
             <Button
               active={openPanel === "config"}
               style={{ marginLeft: "0.5rem" }}

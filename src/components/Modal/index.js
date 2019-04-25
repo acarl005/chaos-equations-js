@@ -1,4 +1,5 @@
 import React from "react"
+import Icon from "../Icon"
 
 export default function Modal(props) {
   return (
@@ -37,7 +38,7 @@ export default function Modal(props) {
           maxHeight: "100%",
           padding: "1rem",
           margin: "1rem",
-          border: "1px solid rgba(0, 144, 255, 0.5)",
+          border: "1px solid rgba(255, 255, 255, 0.8)",
           background: "black",
           display: "flex",
           flexDirection: "column",
@@ -51,22 +52,9 @@ export default function Modal(props) {
           }}
         >
           <h2>{props.title}</h2>
-          <div
-            onClick={props.onClose}
-            style={{ position: "relative", cursor: "pointer" }}
-          >
+          <Icon onClick={props.onClose} style={{ fontSize: "16px" }}>
             <span className="icon-cross" />
-            <div
-              style={{
-                position: "absolute",
-                left: 0,
-                top: 0,
-                transform: "translate(-50%, -50%)",
-                width: "2rem",
-                height: "2rem",
-              }}
-            />
-          </div>
+          </Icon>
         </div>
         <div>{props.children}</div>
       </div>

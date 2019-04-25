@@ -1,8 +1,16 @@
 .chaos-button {
   background: rgba(0, 0, 0, 0.5);
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  display: inline-flex;
+  position: relative;
+  font-size: 18px;
 }
 
 .chaos-button:hover,
 .chaos-button:focus {
-  background: rgba(0, 144, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
 }

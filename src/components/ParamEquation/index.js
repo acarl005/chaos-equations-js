@@ -60,7 +60,7 @@ export default function ParamEquation(props) {
       {Object.keys(paramsEquations).map((ea, i) => {
         return (
           <div key={`${ea}`} style={{ margin: "0.25rem 0" }}>
-            {paramsDimensions[i]}: <span>{paramsEquations[ea]}</span>
+            {paramsDimensions[i]}' = <span>{paramsEquations[ea]}</span>
           </div>
         )
       })}

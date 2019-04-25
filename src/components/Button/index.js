@@ -7,14 +7,7 @@ export default function Button(props) {
       alt={props.alt}
       onClick={props.onClick}
       style={{
-        WebkitAppearance: "none",
-        outline: "none",
-        border: "none",
-        borderBottom: `1px solid rgba(0, 144, 255, ${props.active ? 1 : 0.5})`,
-        padding: "0.25rem 0.5rem",
-        margin: 0,
-        display: "inline-flex",
-        position: "relative",
+        borderBottom: `1px solid rgba(255, 255, 255, ${props.active ? 1 : 0.5})`,
         fontWeight: props.active ? "bold" : "normal",
         ...props.style
       }}

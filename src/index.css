@@ -73,11 +73,15 @@ h3 {
 }
 
 a {
-  color: rgb(0, 144, 255);
+  color: rgb(255, 255, 255, 0.5);
 }
 
 a:visited {
-  color: rgba(0, 144, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+a:hover {
+  color: rgb(255, 255, 255, 0.3);
 }
 
 strong {

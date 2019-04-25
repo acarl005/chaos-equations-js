@@ -48,10 +48,6 @@ export default function InfoModal(props) {
         Open 'Settings' on the left for more advanced features like repeat
         mode, time factor, color wheel, etc.
       </p>
-      <p>
-        Note to Mac users: I highly recommend you use Safari for this
-        webapp. It performs much better than Chromium for WebGL.
-      </p>
     </Modal>
   )
 }
