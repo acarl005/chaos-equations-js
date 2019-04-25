@@ -1,0 +1,45 @@
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.top-left-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+.bottom-left-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  font-size: 12;
+  font-weight: bold;
+}
+
+.top-right-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+.settings-container {
+  margin: 0.5rem;
+  margin-bottom: 5rem;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}

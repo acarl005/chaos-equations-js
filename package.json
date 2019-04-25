@@ -1,0 +1,47 @@
+{
+  "name": "chaos-equations",
+  "version": "1.1.5",
+  "description": "Visualization and animation of real time dynamic chaos equations",
+  "author": "Andrew Carlson <acarl005@g.ucla.edu>",
+  "scripts": {
+    "start": "node server.js",
+    "build": "rm -rf dist && parcel build --public-url /chaos-equations-js src/index.html",
+    "publish": "npm run build && node publish.js",
+    "dev": "parcel src/index.html"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "reset-css": "^4.0.1",
+    "stats-js": "^1.0.0",
+    "three": "^0.103.0"
+  },
+  "engines": {
+    "node": ">=8.x"
+  },
+  "repository": {
+    "url": "https://github.com/acarl005/chaos-equations-js"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "express",
+    "parcel",
+    "react",
+    "chaos",
+    "equations",
+    "webgl",
+    "animations",
+    "visualizations",
+    "three.js"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "gh-pages": "^2.0.1",
+    "parcel-bundler": "^1.12.3"
+  }
+}
