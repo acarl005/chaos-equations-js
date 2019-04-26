@@ -373,6 +373,9 @@ export default function Main() {
             setDragStartXPos(xPos)
             setDragStartYPos(yPos)
             setWithinClickRadius(true)
+            if ("activeElement" in document) {
+              document.activeElement.blur()
+            }
           },
           onMouseMove: (e, camera, canvas) => {
             if (draggingCanvas) {

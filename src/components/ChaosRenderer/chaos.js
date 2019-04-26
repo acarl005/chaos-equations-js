@@ -25,9 +25,7 @@ export default function chaos() {
     history ||
     Array(numIters)
       .fill("")
-      .map(() => {
-        return { x: 0, y: 0 }
-      })
+      .map(() => ({ x: 0, y: 0 }))
 
   // Smooth out stepping speed
   const delta = DELTA_PER_STEP
