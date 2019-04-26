@@ -6,6 +6,7 @@ export default function Slider(props) {
     <div style={{ display: "flex", cursor: "pointer" }}>
       <input
         type="range"
+        style={{ width: "129px" }}
         {...{ min, max, step, value, onChange }}
       />
       <span style={{ marginLeft: "0.5rem" }}>{props.children}</span>

@@ -1,0 +1,16 @@
+.time-strip-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.time-strip-clock {
+  flex-basis: content;
+  margin: 0 10px;
+  line-height: 1.3;
+}
+
+input[type=range].time-strip-range {
+  flex-grow: 1;
+  margin-right: 10px;
+}

@@ -10,7 +10,6 @@ input[type=range] {
   outline: none;
   height: auto;
   position: relative;
-  width: 129px;
 }
 input[type=range]:active, input[type=range]:active:not(:invalid), input[type=range]:focus, input[type=range]:focus:not(:invalid), input[type=range]:hover {
   border: none;

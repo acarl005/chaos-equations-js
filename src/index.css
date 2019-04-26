@@ -8,6 +8,7 @@
 @import './components/HistoryList/index.css';
 @import './components/Checkbox/index.css';
 @import './components/Button/index.css';
+@import './components/TimeStrip/index.css';
 
 * {
   box-sizing: border-box;

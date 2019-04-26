@@ -306,8 +306,8 @@ export default function Main() {
           )}
         </div>
       </div>
-      <div className="button-container" style={{ display: controls ? "flex" : "none" }}>
-        <div style={{ marginBottom: "1rem" }}>
+      <div className="time-container" style={{ display: controls ? "flex" : "none" }}>
+        <div className="time-button-container">
           <Icon
             style={{ margin: "0 0.5rem" }}
             onClick={() => setIsPlaying(isPlaying => !isPlaying)}
