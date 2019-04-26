@@ -1,5 +1,7 @@
 input[type=checkbox].toggle-switch {
-  display: none;
+  opacity: 0;
+  width: 0;
+  margin: 0;
 }
 input[type=checkbox].toggle-switch + .toggle-switch__button {
   background: rgba(255, 255, 255, 0.2);
@@ -38,6 +40,9 @@ input[type=checkbox].toggle-switch:checked + .toggle-switch__button {
 }
 input[type=checkbox].toggle-switch:checked + .toggle-switch__button::after {
   left: 50%;
+}
+input[type=checkbox]:focus + .toggle-switch__button {
+  box-shadow: 0 0 10px rgba(81, 203, 238, 1);
 }
 
 .check-container {
