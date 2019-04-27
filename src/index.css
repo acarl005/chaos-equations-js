@@ -10,7 +10,7 @@
 @import './components/Modal/index.css';
 @import './components/ParamModal/index.css';
 @import './components/InfoModal/index.css';
-@import './components/ParamEquation/index.css';
+@import './components/EquationView/index.css';
 @import './components/ChaosRenderer/index.css';
 @import './components/ControlMessage/index.css';
 

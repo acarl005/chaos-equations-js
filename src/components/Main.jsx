@@ -4,7 +4,7 @@ import ChaosTimer from "../classes/ChaosTimer"
 import ParametricFunction from "../classes/ParametricFunction"
 import ChaosRenderer from "./ChaosRenderer"
 import TimeStrip from "./TimeStrip"
-import ParamEquation from "./ParamEquation"
+import EquationView from "./EquationView"
 import Icon from "./Icon"
 import InfoModal from "./InfoModal"
 import ParamModal from "./ParamModal"
@@ -161,7 +161,7 @@ export default function Main() {
             <span className="icon-pencil" />
           </Icon>
         </div>
-        <ParamEquation {...{ params }} />
+        <EquationView {...{ params }} />
         <SideMenu
           historySelect={histCode => {
             if (paramsString !== histCode) {
