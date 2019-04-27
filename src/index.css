@@ -11,6 +11,7 @@
 @import './components/ParamModal/index.css';
 @import './components/ParamEquation/index.css';
 @import './components/ChaosRenderer/index.css';
+@import './components/ControlMessage/index.css';
 
 * {
   box-sizing: border-box;

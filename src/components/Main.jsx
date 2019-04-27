@@ -12,11 +12,12 @@ import Icon from "./Icon"
 import Checkbox from "./Checkbox"
 import InfoModal from "./InfoModal"
 import ParamModal from "./ParamModal"
+import ControlMessage from "./ControlMessage"
 
 // Initial equation parameters from url
-let initialParamCode = new URL(window.location.href)
-  .searchParams
-  .get("p") || ""
+const searchParams = new URL(window.location.href).searchParams
+const initialShowControls = searchParams.get("controls") !== "false"
+let initialParamCode = searchParams.get("p") || ""
 initialParamCode = initialParamCode
   .substr(0, 6)
   .toUpperCase()
@@ -67,7 +68,7 @@ export default function Main() {
   const [showTransformStats, setShowTransformStats] = useState(false)
   const [mousePos, setMousePos] = useState(() => ({ x: 0, y: 0 }))
   const [pointSize, setPointSize] = useState(1)
-  const [showControls, setShowControls] = useState(true)
+  const [showControls, setShowControls] = useState(initialShowControls)
 
   function reset() {
     chaosTimer.set(tMin)
@@ -332,7 +333,14 @@ export default function Main() {
           )}
         </div>
       </div>
-      <div className="time-container" style={{ display: showControls ? "flex" : "none" }}>
+      {
+        !showControls ? (
+          <div className="bottom-container">
+            <ControlMessage setShowControls={setShowControls} showControls={showControls} />
+          </div>
+        ) : ""
+      }
+      <div className="bottom-container" style={{ display: showControls ? "flex" : "none" }}>
         <div className="time-button-container">
           <Icon
             style={{ margin: "0 0.5rem" }}

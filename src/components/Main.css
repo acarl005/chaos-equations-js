@@ -36,7 +36,8 @@
   overflow-y: scroll;
 }
 
-.time-container {
+.bottom-container {
+  display: flex;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -66,3 +67,4 @@
   display: flex;
   flex-direction: column;
 }
+
