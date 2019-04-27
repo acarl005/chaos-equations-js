@@ -1,7 +1,7 @@
 Chaos Equations
 ===============
 
-[https://acarl005.github.io/chaos-equations-js/index.html](https://acarl005.github.io/chaos-equations-js/index.html)
+[https://acarl005.github.io/chaos-equations-js](https://acarl005.github.io/chaos-equations-js)
 
 Real time visualization and animation of dynamic chaos equations.
 
