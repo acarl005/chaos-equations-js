@@ -9,7 +9,7 @@ export default function SquareButton(props) {
         WebkitAppearance: "none",
         outline: "none",
         border: "none",
-        background: "rgb(0, 144, 255)",
+        background: "gray",
         width: props.size,
         height: props.size,
         padding: 0,

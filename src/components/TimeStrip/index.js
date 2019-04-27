@@ -1,31 +1,23 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Slider from '../Slider'
 
 export default function TimeStrip(props) {
   const { tMin, tMax, chaosTimer } = props
 
-  const [time, setTime] = React.useState(0)
-  React.useEffect(() => {
+  const [time, setTime] = React.useState(tMin)
+  useEffect(() => {
     const handleSetTime = t => {
       setTime(t)
     }
 
-    chaosTimer.on("set", handleSetTime)
+    chaosTimer.on("set", setTime)
 
     return function cleanUp() {
-      chaosTimer.removeListener("set", handleSetTime)
+      chaosTimer.removeListener("set", setTime)
     }
   }, [])
   const formattedTime = time.toFixed(4)
   const currentRatio = Math.abs(time - tMin) / (tMax - tMin)
-
-  const setNewT = e => {
-    const barWidth = e.target.offsetWidth
-    const clickPos = e.clientX
-    const newT = (clickPos / barWidth) * (tMax - tMin) + tMin
-    chaosTimer.set(newT)
-    chaosTimer.skip()
-  }
 
   return (
     <div className="time-strip-container">

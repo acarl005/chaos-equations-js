@@ -14,5 +14,9 @@ export function HistoryItem(props) {
 }
 
 export function HistoryList(props) {
-  return <div>{props.children}</div>
+  return (
+    <div className="history-container">
+      {props.children}
+    </div>
+  )
 }

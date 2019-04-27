@@ -2,3 +2,6 @@
 .chaos-history-item.active {
   background: rgba(0, 144, 255, 0.5);
 }
+.history-container {
+  padding: 5px 8px;
+}

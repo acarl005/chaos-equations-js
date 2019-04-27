@@ -1,0 +1,60 @@
+input:focus ~ .floating-label,
+input:active ~ .floating-label,
+input:not(:focus):valid ~ .floating-label,
+.floating-label.is-active {
+  color: #999;
+  font-size: 1.0rem;
+  top: 0px;
+  opacity: 1;
+}
+.floating-label {
+  color: #999;
+  font-size: 1.2rem;
+  padding: 0;
+  position: absolute;
+  pointer-events: none;
+  top: 30px;
+  transition: 0.2s ease all;
+}
+input[type=text], textarea {
+  background: rgba(0, 0, 0, 0);
+  /*height: 36px;*/
+  border: none;
+  box-shadow: 0 1px 0 0 transparent;
+  border-bottom: 1px solid #999999;
+  color: white;
+  display: block;
+  font-size: 1.2rem;
+  padding: 1.6rem 0 0.4rem 0;
+  transition: border 0.15s ease-out, box-shadow 0.15s ease;
+  appearance: none;
+  border-radius: 0 !important;
+  font-family: inherit;
+  line-height: 1;
+  width: 100%;
+}
+input[type=text]:focus, input[type=text]:hover, textarea:focus, textarea:hover {
+  box-shadow: none;
+  outline: none;
+}
+/*remove the annoying autofill color*/
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px black inset !important;
+  -webkit-text-fill-color: white;
+}
+.param-button {
+  flex-basis: auto;
+  color: black;
+  background: white;
+  font-size: 1.2rem;
+  height: 40px;
+  width: 60px;
+  align-self: flex-end;
+  border-radius: 3px;
+  margin-left: 15px;
+}
+.param-form {
+  position: relative;
+  display: flex;
+  margin-top: 30px;
+}

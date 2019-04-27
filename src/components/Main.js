@@ -13,10 +13,11 @@ import ConfigSection from "./ConfigSection"
 import Icon from "./Icon"
 import Checkbox from "./Checkbox"
 import InfoModal from "./InfoModal"
+import ParamModal from "./ParamModal"
 
 // Initial equation parameters from url
 const urlParams = new URL(window.location.href).searchParams
-const controls = urlParams.get("controls") !== "false"
+//const controls = urlParams.get("controls") !== "false"
 let initialParamCode = urlParams.get("p") || ""
 initialParamCode = initialParamCode
   .substr(0, 6)
@@ -28,6 +29,8 @@ const tMax = 3
 const numIters = 800
 const numSteps = 500
 const chaosTimer = new ChaosTimer(tMin)
+
+const negate = bool => !bool
 
 export default function Main() {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -61,11 +64,12 @@ export default function Main() {
   const [showStats, setShowStats] = useState(false)
   const [colorSpread, setColorSpread] = useState(4)
   const [colorOffset, setColorOffset] = useState(0)
-  const [infoOpen, setInfoOpen] = useState(false)
-  const [pausedFromInfo, setPausedFromInfo] = useState(false)
+  const [modalOpen, setModalOpen] = useState("none")
+  const [pausedFromModal, setPausedFromModal] = useState(false)
   const [showTransformStats, setShowTransformStats] = useState(false)
   const [mousePos, setMousePos] = useState(() => ({ x: 0, y: 0 }))
   const [pointSize, setPointSize] = useState(1)
+  const [showControls, setShowControls] = useState(true)
 
   function reset() {
     chaosTimer.set(tMin)
@@ -106,22 +110,35 @@ export default function Main() {
       window.history.pushState(
         paramsString,
         paramsString,
-        `?p=${paramsString}&controls=${controls}`
+        `?p=${paramsString}`
       )
     }
   }, [paramsString])
 
   return (
     <div className="container" onContextMenu={e => e.preventDefault()} >
-      {infoOpen && <InfoModal {...{ setPausedFromInfo, setIsPlaying, setInfoOpen }} />}
-      <div className="top-left-container" style={{ display: controls ? "flex" : "none", }} >
+      {modalOpen === "info" && <InfoModal {...{ setPausedFromModal, setIsPlaying, setModalOpen }} />}
+      {modalOpen === "param" && (
+        <ParamModal
+          {...{ paramsString, setPausedFromModal, setIsPlaying, setModalOpen }}
+          onSave={newValue => {
+            setParamsString(newValue)
+            setParams(ParametricFunction.fromCode(newValue))
+            setModalOpen("none")
+            if (paramsString !== newValue) {
+              reset()
+            }
+          }}
+        />
+      )}
+      <div className="top-left-container" style={{ display: showControls ? "flex" : "none", }} >
         <div className="top-right-container">
           <Icon
             onClick={() => {
-              setInfoOpen(true)
+              setModalOpen("info")
               setIsPlaying(false)
               if (isPlaying) {
-                setPausedFromInfo(true)
+                setPausedFromModal(true)
               }
             }}
           >
@@ -139,13 +156,10 @@ export default function Main() {
           <EditableParamValue
             value={paramsString}
             exclusive
-            onSave={newValue => {
-              setParamsString(newValue)
-              setParams(ParametricFunction.fromCode(newValue))
-              if (paramsString !== newValue) {
-                reset()
-              }
-            }}
+            setModalOpen={setModalOpen}
+            setPausedFromModal={setPausedFromModal}
+            setIsPlaying={setIsPlaying}
+            isPlaying={isPlaying}
           />
         </div>
         <ParamEquation {...{ params }} />
@@ -181,7 +195,7 @@ export default function Main() {
               <ConfigSection>
                 <Checkbox
                   value={repeat}
-                  onChange={() => setRepeat(repeat => !repeat)}
+                  onChange={() => setRepeat(negate)}
                   id="rep-cur-params"
                 >
                   Repeat Current Params
@@ -262,7 +276,7 @@ export default function Main() {
               <ConfigSection>
                 <Checkbox
                   value={showStats}
-                  onChange={() => setShowStats(showStats => !showStats)}
+                  onChange={() => setShowStats(negate)}
                   id="show-fps"
                 >
                   Show FPS
@@ -271,10 +285,19 @@ export default function Main() {
               <ConfigSection>
                 <Checkbox
                   value={showTransformStats}
-                  onChange={() => setShowTransformStats(showTransformStats => !showTransformStats)}
+                  onChange={() => setShowTransformStats(negate)}
                   id="show-xform"
                 >
                   Show Transform
+                </Checkbox>
+              </ConfigSection>
+              <ConfigSection>
+                <Checkbox
+                  value={showControls}
+                  onChange={() => setShowControls(negate)}
+                  id="show-controls"
+                >
+                  Show Controls
                 </Checkbox>
               </ConfigSection>
             </div>
@@ -306,7 +329,7 @@ export default function Main() {
           )}
         </div>
       </div>
-      <div className="time-container" style={{ display: controls ? "flex" : "none" }}>
+      <div className="time-container" style={{ display: showControls ? "flex" : "none" }}>
         <div className="time-button-container">
           <Icon
             style={{ margin: "0 0.5rem" }}

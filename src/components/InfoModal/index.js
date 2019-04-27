@@ -2,18 +2,12 @@ import React from "react"
 import Modal from "../Modal"
 
 export default function InfoModal(props) {
-  const { setPausedFromInfo, setIsPlaying, setInfoOpen } = props
+  const { setPausedFromModal, setIsPlaying, setModalOpen } = props
   return (
     <Modal
-      onClose={() => {
-        setPausedFromInfo(pausedFromInfo => {
-          if (pausedFromInfo) {
-            setIsPlaying(true)
-          }
-          return pausedFromInfo
-        })
-        setInfoOpen(false)
-      }}
+      setModalOpen={setModalOpen}
+      setPausedFromModal={setPausedFromModal}
+      setIsPlaying={setIsPlaying}
       title={"Chaos Equations"}
     >
       <p>

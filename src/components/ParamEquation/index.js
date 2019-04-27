@@ -56,7 +56,7 @@ export default function ParamEquation(props) {
     }
   })
   return (
-    <div style={{ padding: "0.5rem", width: 0, whiteSpace: "nowrap" }}>
+    <div style={{ padding: "0.5rem 1rem", whiteSpace: "nowrap" }}>
       {Object.keys(paramsEquations).map((ea, i) => {
         return (
           <div key={`${ea}`} style={{ margin: "0.25rem 0" }}>
