@@ -1,14 +1,15 @@
 @import '../node_modules/reset-css/reset.css';
-@import './icomoon/style.css';
+@import '../assets/icomoon/style.css';
 @import './components/Main.css';
-@import './components/Slider/index.css';
 @import './components/Icon/index.css';
-@import './components/HistoryList/index.css';
-@import './components/Checkbox/index.css';
-@import './components/Button/index.css';
+@import './components/SideMenu/index.css';
+@import './components/SideMenu/Checkbox/index.css';
+@import './components/SideMenu/Slider/index.css';
+@import './components/SideMenu/HistoryList/index.css';
 @import './components/TimeStrip/index.css';
 @import './components/Modal/index.css';
 @import './components/ParamModal/index.css';
+@import './components/InfoModal/index.css';
 @import './components/ParamEquation/index.css';
 @import './components/ChaosRenderer/index.css';
 @import './components/ControlMessage/index.css';
@@ -19,12 +20,11 @@
 
 html,
 body {
-  font-family: "Inconsolata", "Courier New", Courier, monospace;
-  background: black;
-  overflow: hidden;
   width: 100%;
   height: 100%;
-  color: white;
+  background: black;
+  font-family: "Inconsolata", "Courier New", Courier, monospace;
+  overflow: hidden;
 }
 
 input,
@@ -45,23 +45,19 @@ button {
   cursor: pointer;
 }
 
-label {
-  margin-bottom: 0.25rem;
-  user-select: none;
-}
-
 sup {
   vertical-align: super;
   font-size: 0.75rem;
 }
 
-canvas {
-  touch-action: none;
-}
-
 p {
   margin: 1rem 0 0 0;
   line-height: 1.4;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 h2 {
@@ -71,8 +67,6 @@ h2 {
 
 h3 {
   font-size: 18px;
-  margin: 1rem 0;
-  padding: 0;
   font-weight: bold;
 }
 

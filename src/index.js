@@ -3,4 +3,4 @@ import ReactDOM from "react-dom"
 
 import Main from "./components/Main"
 
-ReactDOM.render(<Main />, document.querySelector("#main"))
+ReactDOM.render(<Main />, document.getElementById("main"))

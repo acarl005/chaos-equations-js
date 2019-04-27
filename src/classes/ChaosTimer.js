@@ -1,9 +1,9 @@
 import { EventEmitter } from "events"
 
 export default class ChaosTimer extends EventEmitter {
-  constructor(initialTime) {
+  constructor(startTime) {
     super()
-    this._t = initialTime
+    this._t = startTime
     this.paused = false
   }
 

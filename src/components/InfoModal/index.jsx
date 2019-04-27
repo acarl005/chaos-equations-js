@@ -27,7 +27,7 @@ export default function InfoModal(props) {
         </a>
         .
       </p>
-      <h3>Controls:</h3>
+      <h3 className="modal-subheading">Controls:</h3>
       <p>
         Set the 6-letter equation parameter code in the upper left of the
         page.

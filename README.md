@@ -1,21 +1,18 @@
-Chaos Equations
-===============
+# Chaos Equations
 
 [https://acarl005.github.io/chaos-equations-js](https://acarl005.github.io/chaos-equations-js)
 
-Real time visualization and animation of dynamic chaos equations.
+Animations of 2-D parametric equations that move points recursively.
 
 ![chaos equation](./assets/icon-1024.png)
 
-### Implementation
-
 Built with [React](https://reactjs.org/) and WebGL.
-This is based on the equations discovered by [HackerPoet](https://github.com/HackerPoet/Chaos-Equations).
-The implementation is forked from [Jered Danielson](https://glitch.com/edit/#!/chaos-equations?path=README.md:1:0).
+This is based on the equations discovered by [HackerPoet](https://github.com/HackerPoet/Chaos-Equations),
+and forked from an implementation by [Jered Danielson](https://glitch.com/edit/#!/chaos-equations?path=README.md:1:0).
 
-### Run the Code Locally
+## Run the Code Locally
 
-Install the dependencies and then run the Parcel dev server on `http://localhost:1234`.
+To run the development build that watches for changes:
 
 ```
 git clone https://github.com/acarl005/chaos-equations-js
@@ -24,7 +21,7 @@ npm install
 npm run dev
 ```
 
-To build for production, use Parcel to bundle the project and then run the Node.js Express server which will serve static files from `/dist`.
+To run the production build and then serve the static assets:
 
 ```
 npm run build

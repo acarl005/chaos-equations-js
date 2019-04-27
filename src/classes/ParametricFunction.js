@@ -1,14 +1,14 @@
 const BASE27 = "_ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const FLT_MAX = 1e+37
 export const paramsDimensions = ["x", "y"]
-export const paramsOrder = ["xx", "yy", "tt", "xy", "xt", "yt", "x", "y", "t"]
+export const paramsTerms = ["xx", "yy", "tt", "xy", "xt", "yt", "x", "y", "t"]
 
 
 export default class ParametricFunction {
   
   static fromCode(code) {
     const paramsArr = []
-    for (let i = 0; i < Math.floor(18 / 3); ++i) {
+    for (let i = 0; i < Math.floor(18 / 3); i++) {
       let a = 0
       const c = i < code.length ? code[i] : "_"
       if (c >= "A" && c <= "Z") {
@@ -24,10 +24,9 @@ export default class ParametricFunction {
     }
     const paramsObj = {}
     for (let d = 0; d < paramsDimensions.length; d++) {
-      paramsObj[paramsDimensions[d]] = {}
-      for (let i = 0; i < paramsOrder.length; ++i) {
-        paramsObj[paramsDimensions[d]][paramsOrder[i]] =
-          paramsArr[d * paramsOrder.length + i]
+      const dim = paramsObj[paramsDimensions[d]] = {}
+      for (let i = 0; i < paramsTerms.length; i++) {
+        dim[paramsTerms[i]] = paramsArr[d * paramsTerms.length + i]
       }
     }
     return new ParametricFunction(paramsObj)
@@ -35,10 +34,10 @@ export default class ParametricFunction {
 
   static random() {
     const paramsObj = {}
-    paramsDimensions.forEach(eaDim => {
-      paramsObj[eaDim] = {}
-      paramsOrder.forEach(eaParam => {
-        paramsObj[eaDim][eaParam] = Math.floor(Math.random() * 3) - 1
+    paramsDimensions.forEach(dim => {
+      paramsObj[dim] = {}
+      paramsTerms.forEach(term => {
+        paramsObj[dim][term] = Math.floor(Math.random() * 3) - 1
       })
     })
     return new ParametricFunction(paramsObj)
@@ -49,19 +48,12 @@ export default class ParametricFunction {
   }
 
   toCode() {
-    const paramsSafe = {}
-    for (let i = 0; i < paramsDimensions.length; i++) {
-      paramsSafe[paramsDimensions[i]] = this.params[paramsDimensions[i]] || {}
-    }
     let a = 0
     let n = 0
-    let result = []
-    for (let d = 0; d < paramsDimensions.length; d++) {
-      for (let i = 0; i < paramsOrder.length; ++i) {
-        a =
-          a * 3 +
-          parseInt(paramsSafe[paramsDimensions[d]][paramsOrder[i]] || 0) +
-          1
+    const result = []
+    for (let dim of paramsDimensions) {
+      for (let term of paramsTerms) {
+        a = a * 3 + parseInt(this.params[dim][term] || 0) + 1
         n += 1
         if (n == 3) {
           result.push(BASE27[a])

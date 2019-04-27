@@ -2,19 +2,19 @@
   "install": {
     "include": [
       "^package\\.json$",
-      "^\\.env$",
       "^dist/"
     ]
   },
   "restart": {
     "exclude": [
-      "^public/",
+      "^assets/",
       "^src/"
     ],
     "include": [
       "\\.js$",
-      "\\.json"
+      "\\.jsx$",
+      "\\.json$"
     ]
   },
-  "throttle": 1000
+  "throttle": 1200
 }

@@ -5,20 +5,18 @@ import ParametricFunction from "../classes/ParametricFunction"
 import ChaosRenderer from "./ChaosRenderer"
 import TimeStrip from "./TimeStrip"
 import ParamEquation from "./ParamEquation"
-import Button from "./Button"
-import { HistoryList, HistoryItem } from "./HistoryList"
-import Slider from "./Slider"
 import Icon from "./Icon"
-import Checkbox from "./Checkbox"
 import InfoModal from "./InfoModal"
 import ParamModal from "./ParamModal"
 import ControlMessage from "./ControlMessage"
+import SideMenu from "./SideMenu"
+
+import { negate } from "../utils"
 
 // Initial equation parameters from url
 const searchParams = new URL(window.location.href).searchParams
 const initialShowControls = searchParams.get("controls") !== "false"
-let initialParamCode = searchParams.get("p") || ""
-initialParamCode = initialParamCode
+const initialParamCode = (searchParams.get("p") || "")
   .substr(0, 6)
   .toUpperCase()
   .replace(/[^A-Z_]/g, "")
@@ -28,8 +26,6 @@ const tMax = 3
 const numIters = 800
 const numSteps = 500
 const chaosTimer = new ChaosTimer(tMin)
-
-const negate = bool => !bool
 
 export default function Main() {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -55,7 +51,6 @@ export default function Main() {
   const [repeat, setRepeat] = useState(false)
   const [attenuation, setAttenuation] = useState(0.85)
   const [trailPersistence, setTrailPersistence] = useState(0.6)
-  const [openPanel, setOpenPanel] = useState("")
   const [history, setHistory] = useState(
     localStorage.getItem("chaos-equations-history") || ""
   )
@@ -167,171 +162,30 @@ export default function Main() {
           </Icon>
         </div>
         <ParamEquation {...{ params }} />
-        <div>
-          <div className="nav-container">
-            <Button
-              active={openPanel === "config"}
-              style={{ marginLeft: "0.5rem" }}
-              onClick={() => {
-                setOpenPanel(openPanel =>
-                  openPanel !== "config" ? "config" : ""
-                )
-              }}
-            >
-              Settings
-            </Button>
-            <Button
-              active={openPanel === "history"}
-              style={{ marginLeft: "0.5rem" }}
-              onClick={() => {
-                setOpenPanel(openPanel =>
-                  openPanel !== "history" ? "history" : ""
-                )
-              }}
-            >
-              History
-            </Button>
-          </div>
-        </div>
-        <div className="settings-container" >
-          {openPanel === "config" && (
-            <div className="config-container">
-              <div className="config-item">
-                <Checkbox
-                  value={repeat}
-                  onChange={() => setRepeat(negate)}
-                  id="rep-cur-params"
-                >
-                  Repeat Current Params
-                </Checkbox>
-              </div>
-              <div className="config-item">
-                <label>Speed</label>
-                <Slider
-                  min="-2"
-                  max="2"
-                  step="0.01"
-                  value={timeFactor}
-                  onChange={e => setTimeFactor(parseFloat(e.target.value))}
-                >
-                  {timeFactor}
-                </Slider>
-              </div>
-              <div className="config-item">
-                <label>Point Size</label>
-                <Slider
-                  min="0.5"
-                  max="4"
-                  step="0.5"
-                  value={pointSize}
-                  onChange={e => setPointSize(parseFloat(e.target.value))}
-                >
-                  {pointSize}
-                </Slider>
-              </div>
-              <div className="config-item">
-                <label>Point Attenuation</label>
-                <Slider
-                  min="0.5"
-                  max="0.99"
-                  step="0.01"
-                  value={attenuation}
-                  onChange={e => setAttenuation(parseFloat(e.target.value))}
-                >
-                  {attenuation}
-                </Slider>
-              </div>
-              <div className="config-item">
-                <label>Trail Persistence</label>
-                <Slider
-                  min="0"
-                  max="1"
-                  step="0.1"
-                  value={trailPersistence}
-                  onChange={e => setTrailPersistence(parseFloat(e.target.value))}
-                >
-                  {trailPersistence}
-                </Slider>
-              </div>
-              <div className="config-item">
-                <label>Color Spread</label>
-                <Slider
-                  min="0"
-                  max="10"
-                  step="1"
-                  value={colorSpread}
-                  onChange={e => setColorSpread(parseFloat(e.target.value))}
-                >
-                  {colorSpread}
-                </Slider>
-              </div>
-              <div className="config-item">
-                <label>Color Offset</label>
-                <Slider
-                  min="0"
-                  max="1"
-                  step=".01"
-                  value={colorOffset}
-                  onChange={e => setColorOffset(parseFloat(e.target.value))}
-                >
-                  {colorOffset}
-                </Slider>
-              </div>
-              <div className="config-item">
-                <Checkbox
-                  value={showStats}
-                  onChange={() => setShowStats(negate)}
-                  id="show-fps"
-                >
-                  Show FPS
-                </Checkbox>
-              </div>
-              <div className="config-item">
-                <Checkbox
-                  value={showTransformStats}
-                  onChange={() => setShowTransformStats(negate)}
-                  id="show-xform"
-                >
-                  Show Transform
-                </Checkbox>
-              </div>
-              <div className="config-item">
-                <Checkbox
-                  value={showControls}
-                  onChange={() => setShowControls(negate)}
-                  id="show-controls"
-                >
-                  Show Controls
-                </Checkbox>
-              </div>
-            </div>
-          )}
-          {openPanel === "history" && (
-            <HistoryList>
-              {history
-                .split(",")
-                .reverse()
-                .map((ea, i) => {
-                  return (
-                    <HistoryItem
-                      active={ea === paramsString}
-                      key={`${ea}-${i}`}
-                      onClick={() => {
-                        if (paramsString !== ea) {
-                          chaosTimer.set(tMin)
-                        }
-                        setParamsString(ea)
-                        setParams(ParametricFunction.fromCode(ea))
-                        setIsPlaying(true)
-                      }}
-                    >
-                      {ea}
-                    </HistoryItem>
-                  )
-                })}
-            </HistoryList>
-          )}
-        </div>
+        <SideMenu
+          historySelect={histCode => {
+            if (paramsString !== histCode) {
+              chaosTimer.set(tMin)
+            }
+            setParamsString(histCode)
+            setParams(ParametricFunction.fromCode(histCode))
+            setIsPlaying(true)
+          }}
+          {...{
+            history,
+            paramsString,
+            repeat, setRepeat,
+            timeFactor, setTimeFactor,
+            pointSize, setPointSize,
+            attenuation, setAttenuation,
+            trailPersistence, setTrailPersistence,
+            colorSpread, setColorSpread,
+            colorOffset, setColorOffset,
+            showStats, setShowStats,
+            showTransformStats, setShowTransformStats,
+            showControls, setShowControls
+          }}
+        />
       </div>
       {
         !showControls ? (

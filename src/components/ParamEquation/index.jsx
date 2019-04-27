@@ -1,5 +1,5 @@
 import React from "react"
-import { paramsDimensions, paramsOrder } from "../../classes/ParametricFunction"
+import { paramsDimensions, paramsTerms } from "../../classes/ParametricFunction"
 
 function pushParamToken(strArr, varName, varValue) {
   const varNameComputed =
@@ -44,7 +44,7 @@ export default function ParamEquation(props) {
   const paramsEquations = {}
   paramsDimensions.forEach(eaDimension => {
     paramsEquations[eaDimension] = []
-    paramsOrder.forEach(eaParam => {
+    paramsTerms.forEach(eaParam => {
       pushParamToken(
         paramsEquations[eaDimension],
         eaParam,
