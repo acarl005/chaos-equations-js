@@ -19,6 +19,7 @@ export default function InfoModal(props) {
         <a href="https://github.com/HackerPoet/Chaos-Equations">discovered by HackerPoet</a>.
       </p>
       <p>
+        My source code is <a href="https://github.com/acarl005/chaos-equations-js">here</a>.
         This implementation is forked from one written by Jered Danielson.
         More information and source code is available{" "}
         <a href="https://glitch.com/edit/#!/chaos-equations?path=README.md:1:0">
