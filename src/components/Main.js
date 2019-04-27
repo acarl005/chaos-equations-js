@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import ChaosTimer from "../classes/ChaosTimer"
 import ParametricFunction from "../classes/ParametricFunction"
 import ChaosRenderer from "./ChaosRenderer"
-import EditableParamValue from "./EditableParamValue"
 import TimeStrip from "./TimeStrip"
 import ParamEquation from "./ParamEquation"
 import Button from "./Button"
@@ -152,15 +151,20 @@ export default function Main() {
             <div>{`scale (${scaleFactor.toFixed(3)})`}</div>
           </div>
         )}
-        <div style={{ display: "flex" }}>
-          <EditableParamValue
-            value={paramsString}
-            exclusive
-            setModalOpen={setModalOpen}
-            setPausedFromModal={setPausedFromModal}
-            setIsPlaying={setIsPlaying}
-            isPlaying={isPlaying}
-          />
+        <div style={{ padding: "0.5rem 1rem", fontSize: "1.5rem" }}>
+          Code: {paramsString}
+          <Icon
+            onClick={() => {
+              setModalOpen("param")
+              setIsPlaying(false)
+              if (isPlaying) {
+                setPausedFromModal(true)
+              }
+            }}
+            style={{ marginLeft: "10px" }}
+          >
+            <span className="icon-pencil" />
+          </Icon>
         </div>
         <ParamEquation {...{ params }} />
         <div>

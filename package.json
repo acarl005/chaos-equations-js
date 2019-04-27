@@ -7,6 +7,7 @@
     "start": "node server.js",
     "build": "rm -rf dist && parcel build --public-url /chaos-equations-js src/index.html",
     "publish": "npm run build && node publish.js",
+    "lint": "eslint src",
     "dev": "parcel src/index.html"
   },
   "dependencies": {
@@ -41,6 +42,8 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.12.4",
     "gh-pages": "^2.0.1",
     "parcel-bundler": "^1.12.3"
   }
