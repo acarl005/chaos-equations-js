@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events'
+import { EventEmitter } from "events"
 
 export default class ChaosTimer extends EventEmitter {
   constructor(initialTime) {
