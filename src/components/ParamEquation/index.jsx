@@ -19,18 +19,18 @@ function pushParamToken(strArr, varName, varValue) {
             varNameComputed
           ) : (
             <span>
-              {` + `}
+              {" + "}
               {varNameComputed}
             </span>
           )
         ) : strArr.length === 0 ? (
           <span>
-            {`-`}
+            {"-"}
             {varNameComputed}
           </span>
         ) : (
           <span>
-            {` - `}
+            {" - "}
             {varNameComputed}
           </span>
         )}

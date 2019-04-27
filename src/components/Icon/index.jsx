@@ -14,7 +14,6 @@ export default function Icon(props) {
         outline: "none",
         padding: 0,
         margin: 0,
-        display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
         lineHeight: 1,

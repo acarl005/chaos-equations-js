@@ -15,7 +15,7 @@ export default function InfoModal(props) {
       </p>
       <p>
         Iterates the positions of 800 points via a simple iterative
-        calculation with a single parameter - time (t). Based on the equations{' '}
+        calculation with a single parameter - time (t). Based on the equations{" "}
         <a href="https://github.com/HackerPoet/Chaos-Equations">discovered by HackerPoet</a>.
       </p>
       <p>

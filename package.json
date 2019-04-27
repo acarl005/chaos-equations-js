@@ -7,7 +7,7 @@
     "start": "node server.js",
     "build": "rm -rf dist && parcel build --public-url /chaos-equations-js src/index.html",
     "publish": "npm run build && node publish.js",
-    "lint": "eslint src",
+    "lint": "eslint src/ --ext js --ext jsx",
     "dev": "parcel src/index.html"
   },
   "dependencies": {
@@ -41,6 +41,7 @@
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.12.4",

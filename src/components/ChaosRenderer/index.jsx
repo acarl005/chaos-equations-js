@@ -1,9 +1,9 @@
 import React from "react"
-const THREE = require("three")
-const statsjs = require("stats-js")
+import * as THREE from "three"
+import statsjs from "stats-js"
 const stats = new statsjs()
 
-import chaos from "./chaos.js"
+import chaos from "./chaos"
 
 export default class ChaosRenderer extends React.Component {
   static isWebGLAvailable() {
@@ -36,7 +36,8 @@ export default class ChaosRenderer extends React.Component {
       })
       renderer.setPixelRatio(window.devicePixelRatio)
       renderer.setSize(element.offsetWidth, element.offsetHeight)
-      renderer.autoClearColor = false; // allows for fancy fading trails
+      // allows for fancy fading trails
+      renderer.autoClearColor = false
       element.innerHTML = ""
       element.appendChild(renderer.domElement)
       this.renderer = renderer
@@ -180,7 +181,7 @@ export default class ChaosRenderer extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { props, geometry, points, fadePlane, stats } = this
-    const { chaosTimer, numIters, colorSpread, colorOffset } = this.props
+    const { numIters, colorSpread, colorOffset } = this.props
     let shouldRenderFrame = false
     if (prevProps.scaleFactor !== props.scaleFactor) {
       shouldRenderFrame = true
@@ -196,7 +197,6 @@ export default class ChaosRenderer extends React.Component {
         Math.max(1 - props.attenuation, 0.01),
         0.99
       )
-      console.log(points.material.opacity)
       shouldRenderFrame = true
     }
     if (prevProps.trailPersistence !== props.trailPersistence) {
@@ -282,7 +282,8 @@ export default class ChaosRenderer extends React.Component {
     const { chaosTimer } = this.props
     this.t = chaosTimer.get()
     applyChaos()
-    geometry.attributes.position.needsUpdate = true; // required after the first render
+    // required after the first render
+    geometry.attributes.position.needsUpdate = true
     renderer.render(scene, camera)
   }
 
