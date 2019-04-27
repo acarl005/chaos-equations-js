@@ -7,7 +7,10 @@
 @import './components/Checkbox/index.css';
 @import './components/Button/index.css';
 @import './components/TimeStrip/index.css';
+@import './components/Modal/index.css';
 @import './components/ParamModal/index.css';
+@import './components/ParamEquation/index.css';
+@import './components/ChaosRenderer/index.css';
 
 * {
   box-sizing: border-box;

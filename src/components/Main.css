@@ -51,3 +51,18 @@
 .config-item {
   margin: 0.5rem 0;
 }
+
+.edit-params-container {
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+}
+
+.nav-container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.config-container {
+  display: flex;
+  flex-direction: column;
+}

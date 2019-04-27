@@ -28,60 +28,16 @@ export default class Modal extends React.Component {
   }
   render() {
     return (
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 100,
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0, 0, 0, .5)",
-            zIndex: 200,
-          }}
-          onClick={this.handleClose}
-        />
-        <div
-          style={{
-            position: "relative",
-            zIndex: 300,
-            color: "white",
-            width: 640,
-            maxWidth: "100%",
-            maxHeight: "100%",
-            padding: "1rem",
-            margin: "1rem",
-            border: "1px solid rgba(255, 255, 255, 0.8)",
-            background: "black",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "auto",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
+      <div className="modal-mask" >
+        <div className="model-close-membrane" onClick={this.handleClose} />
+        <div className="modal-content">
+          <div className="modal-head" >
             <h2>{this.props.title}</h2>
             <Icon onClick={this.handleClose} style={{ fontSize: "16px" }}>
               <span className="icon-cross" />
             </Icon>
           </div>
-          <div>{this.props.children}</div>
+          <div className="modal-body">{this.props.children}</div>
         </div>
       </div>
     )

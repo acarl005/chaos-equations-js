@@ -5,21 +5,7 @@ export default function Icon(props) {
     <button
       className="chaos-icon"
       onClick={props.onClick}
-      style={{
-        display: "inline-flex",
-        height: "2rem",
-        width: "2rem",
-        userSelect: "none",
-        cursor: "pointer",
-        outline: "none",
-        padding: 0,
-        margin: 0,
-        alignItems: "center",
-        justifyContent: "center",
-        lineHeight: 1,
-        fontSize: "1.5rem",
-        ...props.style,
-      }}
+      style={props.style}
     >
       {props.children}
     </button>

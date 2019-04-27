@@ -289,21 +289,8 @@ export default class ChaosRenderer extends React.Component {
 
   render() {
     return (
-      <div
-        ref={el => {
-          this.element = el
-        }}
-        style={{ width: "100%", height: "100%", overflow: "hidden" }}
-      >
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
+      <div ref={el => this.element = el} className="chaos-container">
+        <div className="chaos-item">
           Your browser does not support WebGL :'(
         </div>
       </div>

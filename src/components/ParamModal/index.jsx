@@ -27,7 +27,6 @@ export default class ParamModal extends React.Component {
             defaultValue={paramsString}
             required
             pattern="[A-Za-z_]{6}"
-            style={{ flexGrow: 1 }}
           />
           <label className="floating-label">6-letter code</label>
           <button className="param-button">Save</button>

@@ -3,7 +3,7 @@ import React from "react"
 export default function Slider(props) {
   const { min, max, step, value, onChange } = props
   return (
-    <div style={{ display: "flex", cursor: "pointer" }}>
+    <div className="slider-container">
       <input
         type="range"
         style={{ width: "129px" }}

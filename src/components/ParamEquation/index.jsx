@@ -56,10 +56,10 @@ export default function ParamEquation(props) {
     }
   })
   return (
-    <div style={{ padding: "0.5rem 1rem", whiteSpace: "nowrap" }}>
+    <div className="param-equ-container">
       {Object.keys(paramsEquations).map((ea, i) => {
         return (
-          <div key={`${ea}`} style={{ margin: "0.25rem 0" }}>
+          <div key={`${ea}`} className="param-equ-row">
             {paramsDimensions[i]}' = <span>{paramsEquations[ea]}</span>
           </div>
         )

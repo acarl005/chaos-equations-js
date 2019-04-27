@@ -150,7 +150,7 @@ export default function Main() {
             <div>{`scale (${scaleFactor.toFixed(3)})`}</div>
           </div>
         )}
-        <div style={{ padding: "0.5rem 1rem", fontSize: "1.5rem" }}>
+        <div className="edit-params-container">
           Code: {paramsString}
           <Icon
             onClick={() => {
@@ -167,7 +167,7 @@ export default function Main() {
         </div>
         <ParamEquation {...{ params }} />
         <div>
-          <div style={{ display: "flex", marginTop: "10px" }}>
+          <div className="nav-container">
             <Button
               active={openPanel === "config"}
               style={{ marginLeft: "0.5rem" }}
@@ -194,7 +194,7 @@ export default function Main() {
         </div>
         <div className="settings-container" >
           {openPanel === "config" && (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className="config-container">
               <div className="config-item">
                 <Checkbox
                   value={repeat}
