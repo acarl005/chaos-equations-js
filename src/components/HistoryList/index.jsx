@@ -2,7 +2,7 @@ import React from "react"
 
 export function HistoryItem(props) {
   return (
-    <div style={{ cursor: "pointer", margin: "0.25rem 0" }}>
+    <div className="history-item">
       <span
         className={`chaos-history-item ${props.active && "active"}`}
         onClick={props.onClick}

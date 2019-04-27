@@ -1,9 +1,7 @@
 @import '../node_modules/reset-css/reset.css';
 @import './icomoon/style.css';
 @import './components/Main.css';
-@import './components/TextInput/index.css';
 @import './components/Slider/index.css';
-@import './components/InfoTip/index.css';
 @import './components/Icon/index.css';
 @import './components/HistoryList/index.css';
 @import './components/Checkbox/index.css';

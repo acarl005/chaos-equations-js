@@ -8,16 +8,15 @@ import ParamEquation from "./ParamEquation"
 import Button from "./Button"
 import { HistoryList, HistoryItem } from "./HistoryList"
 import Slider from "./Slider"
-import ConfigSection from "./ConfigSection"
 import Icon from "./Icon"
 import Checkbox from "./Checkbox"
 import InfoModal from "./InfoModal"
 import ParamModal from "./ParamModal"
 
 // Initial equation parameters from url
-const urlParams = new URL(window.location.href).searchParams
-//const controls = urlParams.get("controls") !== "false"
-let initialParamCode = urlParams.get("p") || ""
+let initialParamCode = new URL(window.location.href)
+  .searchParams
+  .get("p") || ""
 initialParamCode = initialParamCode
   .substr(0, 6)
   .toUpperCase()
@@ -196,7 +195,7 @@ export default function Main() {
         <div className="settings-container" >
           {openPanel === "config" && (
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <ConfigSection>
+              <div className="config-item">
                 <Checkbox
                   value={repeat}
                   onChange={() => setRepeat(negate)}
@@ -204,8 +203,8 @@ export default function Main() {
                 >
                   Repeat Current Params
                 </Checkbox>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <label>Speed</label>
                 <Slider
                   min="-2"
@@ -216,8 +215,8 @@ export default function Main() {
                 >
                   {timeFactor}
                 </Slider>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <label>Point Size</label>
                 <Slider
                   min="0.5"
@@ -228,8 +227,8 @@ export default function Main() {
                 >
                   {pointSize}
                 </Slider>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <label>Point Attenuation</label>
                 <Slider
                   min="0.5"
@@ -240,8 +239,8 @@ export default function Main() {
                 >
                   {attenuation}
                 </Slider>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <label>Trail Persistence</label>
                 <Slider
                   min="0"
@@ -252,8 +251,8 @@ export default function Main() {
                 >
                   {trailPersistence}
                 </Slider>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <label>Color Spread</label>
                 <Slider
                   min="0"
@@ -264,8 +263,8 @@ export default function Main() {
                 >
                   {colorSpread}
                 </Slider>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <label>Color Offset</label>
                 <Slider
                   min="0"
@@ -276,8 +275,8 @@ export default function Main() {
                 >
                   {colorOffset}
                 </Slider>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <Checkbox
                   value={showStats}
                   onChange={() => setShowStats(negate)}
@@ -285,8 +284,8 @@ export default function Main() {
                 >
                   Show FPS
                 </Checkbox>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <Checkbox
                   value={showTransformStats}
                   onChange={() => setShowTransformStats(negate)}
@@ -294,8 +293,8 @@ export default function Main() {
                 >
                   Show Transform
                 </Checkbox>
-              </ConfigSection>
-              <ConfigSection>
+              </div>
+              <div className="config-item">
                 <Checkbox
                   value={showControls}
                   onChange={() => setShowControls(negate)}
@@ -303,7 +302,7 @@ export default function Main() {
                 >
                   Show Controls
                 </Checkbox>
-              </ConfigSection>
+              </div>
             </div>
           )}
           {openPanel === "history" && (
@@ -337,7 +336,7 @@ export default function Main() {
         <div className="time-button-container">
           <Icon
             style={{ margin: "0 0.5rem" }}
-            onClick={() => setIsPlaying(isPlaying => !isPlaying)}
+            onClick={() => setIsPlaying(negate)}
           >
             {isPlaying ? (
               <span className="icon-pause2" />
@@ -432,7 +431,7 @@ export default function Main() {
           onClick: () => {
             // On click, play/pause if mouse hasn't moved much
             if (withinClickRadius) {
-              setIsPlaying(isPlaying => !isPlaying)
+              setIsPlaying(negate)
             }
           },
           onTouchStart: e => {
@@ -487,7 +486,7 @@ export default function Main() {
           onTouchEnd: () => {
             // On tap, play/pause if mouse hasn't moved much
             if (draggingCanvas && withinClickRadius) {
-              setIsPlaying(isPlaying => !isPlaying)
+              setIsPlaying(negate)
             }
             setDraggingCanvas(false)
           }

@@ -47,3 +47,7 @@
 .time-button-container {
   margin-bottom: 0.5rem;
 }
+
+.config-item {
+  margin: 0.5rem 0;
+}
