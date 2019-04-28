@@ -33,7 +33,7 @@ export default class Modal extends React.Component {
         <div className="modal-content">
           <div className="modal-head" >
             <h2>{this.props.title}</h2>
-            <Icon onClick={this.handleClose} style={{ fontSize: "16px" }}>
+            <Icon onClick={this.handleClose} style={{ fontSize: "1.1rem" }}>
               <span className="icon-cross" />
             </Icon>
           </div>

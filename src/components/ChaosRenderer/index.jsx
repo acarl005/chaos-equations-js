@@ -47,12 +47,13 @@ export default class ChaosRenderer extends React.Component {
     // Camera
     const aspectRatio = element.offsetWidth / element.offsetHeight
     const camera = new THREE.OrthographicCamera(
-      -1 * aspectRatio,
-      1 * aspectRatio,
-      1,
-      -1,
-      0.1,
-      20
+      -1 * aspectRatio, // left
+      1 * aspectRatio, // right
+      1, // top
+      -1, // bottom
+      // its 2-D, so this only needs to contain the plane with all the points
+      0.9, // near
+      1.1 // far
     )
     camera.position.set(0, 0, 1)
     this.aspectRatio = aspectRatio
@@ -61,14 +62,14 @@ export default class ChaosRenderer extends React.Component {
     // Scene and geometry
     const {
       chaosTimer,
-      numIters = 800,
-      numSteps = 500,
-      colorSpread = 4,
-      colorOffset = 0,
-      pointSize = 1,
-      scaleFactor = 1,
-      trailPersistence = 0.03,
-      attenuation = 0.85
+      numIters,
+      numSteps,
+      colorSpread,
+      colorOffset,
+      pointSize,
+      scaleFactor,
+      trailPersistence,
+      attenuation,
     } = props
     const scene = new THREE.Scene()
     this.scene = scene
@@ -78,11 +79,7 @@ export default class ChaosRenderer extends React.Component {
     const colorsArray = []
 
     for (var i = 0; i < numPoints; i++) {
-      // Positions start at 0 - center of screen
-      const x = 0
-      const y = 0
-      const z = 0
-      positionsArray.push(x, y, z)
+      positionsArray.push(0, 0, 0)
 
       // Depending on color mode, create color for point
       const { r, g, b } = ChaosRenderer.getWheelColor((i * colorSpread + colorOffset) % numIters)
@@ -98,8 +95,6 @@ export default class ChaosRenderer extends React.Component {
       "color",
       new THREE.Float32BufferAttribute(colorsArray, 3)
     )
-    geometry.computeBoundingSphere()
-    geometry.computeBoundingBox()
     this.geometry = geometry
 
     const pointsMaterial = new THREE.PointsMaterial({
@@ -107,7 +102,6 @@ export default class ChaosRenderer extends React.Component {
       vertexColors: THREE.VertexColors,
       transparent: true,
       opacity: 1 - attenuation
-      // blending: THREE.AdditiveBlending,
     })
 
     const points = new THREE.Points(geometry, pointsMaterial)

@@ -3,7 +3,7 @@ import React from "react"
 export default function Icon(props) {
   return (
     <button
-      className="chaos-icon"
+      className="clickable-icon"
       onClick={props.onClick}
       style={props.style}
     >

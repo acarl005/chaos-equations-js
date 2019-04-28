@@ -1,5 +1,5 @@
-.chaos-history-item:hover,
-.chaos-history-item.active {
+.history-item:hover,
+.history-item.active {
   background: rgba(255, 255, 255, 0.3);
 }
 .history-container {

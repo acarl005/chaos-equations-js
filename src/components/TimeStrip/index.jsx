@@ -7,7 +7,7 @@ export default function TimeStrip(props) {
   useEffect(() => {
     chaosTimer.on("set", setTime)
 
-    return function cleanUp() {
+    return () => {
       chaosTimer.removeListener("set", setTime)
     }
   }, [])

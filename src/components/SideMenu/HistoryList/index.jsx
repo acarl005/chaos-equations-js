@@ -4,7 +4,7 @@ export function HistoryItem(props) {
   return (
     <div className="history-item">
       <span
-        className={`chaos-history-item ${props.active && "active"}`}
+        className={`history-item ${props.active && "active"}`}
         onClick={props.onClick}
       >
         {props.children}

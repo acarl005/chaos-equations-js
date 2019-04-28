@@ -20,7 +20,6 @@ input:not(:focus):valid ~ .floating-label,
 
 input[type=text], textarea {
   background: rgba(0, 0, 0, 0);
-  /*height: 36px;*/
   border: none;
   box-shadow: 0 1px 0 0 transparent;
   border-bottom: 1px solid #999999;
@@ -46,14 +45,14 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 50px black inset !important;
   -webkit-text-fill-color: white;
 }
-.param-button {
 
+.param-button {
   flex-basis: auto;
   color: black;
   background: white;
   font-size: 1.2rem;
-  height: 40px;
-  width: 60px;
+  height: 2.5rem;
+  width: 4rem;
   align-self: flex-end;
   border-radius: 3px;
   margin-left: 15px;
@@ -62,7 +61,7 @@ input:-webkit-autofill {
 .param-form {
   position: relative;
   display: flex;
-  margin-top: 30px;
+  margin-top: 1.8rem;
 }
 
 .param-form input {
