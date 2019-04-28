@@ -1,15 +1,15 @@
-const DELTA_PER_STEP = 1e-5
-const DELTA_MINIMUM = 1e-7
+const deltaPerStep = 1e-5
+const deltaMinimum = 1e-7
 
 let history
 
 /**
  * Calculates chaos equation iterations
- * Note the tight coupling to the ChaosRenderer context for performance reasons
+ * Note the tight coupling to the ChaosCanvas context for performance reasons
  */
 export default function chaos() {
   const { camera, geometry } = this
-  let { rollingDelta = DELTA_PER_STEP, t } = this
+  let { rollingDelta = deltaPerStep, t } = this
 
   const {
     params,
@@ -21,14 +21,12 @@ export default function chaos() {
     numIters,
   } = this.props
 
-  history =
-    history ||
-    Array(numIters)
-      .fill("")
-      .map(() => ({ x: 0, y: 0 }))
+  history = history || Array(numIters)
+    .fill(null)
+    .map(() => ({ x: 0, y: 0 }))
 
   // Smooth out stepping speed
-  const delta = DELTA_PER_STEP
+  const delta = deltaPerStep
   rollingDelta = rollingDelta * 0.99 + delta * 0.01
 
   // Apply chaos
@@ -57,20 +55,18 @@ export default function chaos() {
         const dist = 500 * Math.sqrt(dx * dx + dy * dy)
         rollingDelta = Math.min(
           rollingDelta,
-          Math.max(delta / (dist + 1e-5), DELTA_MINIMUM)
+          Math.max(delta / (dist + 1e-5), deltaMinimum)
         )
         noPointsOnScreen = false
       }
 
-      history[iter] = { x: nx, y: ny }
+      history[iter].x = nx
+      history[iter].y = ny
 
       // Update geometry
-      geometry.attributes.position.array[
-        (step * numIters + iter) * 3
-      ] = screenXPos
-      geometry.attributes.position.array[
-        (step * numIters + iter) * 3 + 1
-      ] = screenYPos
+      const pointInd = (step * numIters + iter) * 3
+      geometry.attributes.position.array[pointInd] = screenXPos
+      geometry.attributes.position.array[pointInd + 1] = screenYPos
       x = nx
       y = ny
     }

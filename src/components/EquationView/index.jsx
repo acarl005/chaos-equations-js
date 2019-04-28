@@ -10,11 +10,11 @@ function pushEquTerm(elements, term, coef) {
     } else {
       span = <span>{coef > 0 ? " + " : " - "}{termDisplay}</span>
     }
-    elements.push(span)
+    elements.push(<span key={term}>{span}</span>)
   }
 }
 
-export default function ParamEquation(props) {
+export default function EquationView(props) {
   const { params } = props
   const paramsEquations = {}
   for (let dim of paramsDimensions) {

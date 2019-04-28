@@ -166,13 +166,13 @@ export default function SideMenu(props) {
               .split(",")
               .reverse()
               .map((histCode, i) =>
-                  <HistoryItem
-                    active={histCode === paramsString}
-                    key={`${histCode}-${i}`}
-                    onClick={() => historySelect(histCode)}
-                  >
-                    {histCode}
-                  </HistoryItem>
+                <HistoryItem
+                  active={histCode === paramsString}
+                  key={`${histCode}-${i}`}
+                  onClick={() => historySelect(histCode)}
+                >
+                  {histCode}
+                </HistoryItem>
               )
           }
         </HistoryList>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 
-import ChaosTimer from "../classes/ChaosTimer"
+import TimeKeeper from "../classes/TimeKeeper"
 import ParametricFunction from "../classes/ParametricFunction"
-import ChaosRenderer from "./ChaosRenderer"
-import TimeStrip from "./TimeStrip"
+import ChaosCanvas from "./ChaosCanvas"
+import TimeControls from "./TimeControls"
 import EquationView from "./EquationView"
 import Icon from "./Icon"
 import InfoModal from "./InfoModal"
@@ -25,7 +25,7 @@ const tMin = -3
 const tMax = 3
 const numIters = 800
 const numSteps = 500
-const chaosTimer = new ChaosTimer(tMin)
+const timeKeeper = new TimeKeeper(tMin)
 
 export default function Main() {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -66,8 +66,8 @@ export default function Main() {
   const [showControls, setShowControls] = useState(initialShowControls)
 
   function reset() {
-    chaosTimer.set(tMin)
-    chaosTimer.play()
+    timeKeeper.set(tMin)
+    timeKeeper.play()
     setIsPlaying(true)
     setScaleFactor(1)
     setXPos(0)
@@ -141,8 +141,8 @@ export default function Main() {
         </div>
         {showTransformStats && (
           <div className="bottom-left-container" >
-            <div>{`mouse x(${mousePos.x}) y(${mousePos.y})`}</div>
-            <div>{`position x(${xPos.toFixed(3)}) y(${yPos.toFixed(3)})`}</div>
+            <div>{`mouse (${mousePos.x}, ${mousePos.y})`}</div>
+            <div>{`position (${xPos.toFixed(3)}, ${yPos.toFixed(3)})`}</div>
             <div>{`scale (${scaleFactor.toFixed(3)})`}</div>
           </div>
         )}
@@ -165,7 +165,7 @@ export default function Main() {
         <SideMenu
           historySelect={histCode => {
             if (paramsString !== histCode) {
-              chaosTimer.set(tMin)
+              timeKeeper.set(tMin)
             }
             setParamsString(histCode)
             setParams(ParametricFunction.fromCode(histCode))
@@ -218,11 +218,11 @@ export default function Main() {
             <span className="icon-next2" />
           </Icon>
         </div>
-        <TimeStrip {...{ tMin, tMax, chaosTimer }} />
+        <TimeControls {...{ tMin, tMax, timeKeeper }} />
       </div>
-      <ChaosRenderer
+      <ChaosCanvas
         {...{
-          chaosTimer,
+          timeKeeper,
           params,
           isPlaying,
           tMin,

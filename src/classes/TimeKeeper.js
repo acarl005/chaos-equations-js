@@ -1,6 +1,6 @@
 import { EventEmitter } from "events"
 
-export default class ChaosTimer extends EventEmitter {
+export default class TimeKeeper extends EventEmitter {
   constructor(startTime) {
     super()
     this._t = startTime
