@@ -1,2 +1,5 @@
 include:
+  # annoyingly, GitHub pages ignores file/folder names that begin with an underscore
+  # but Parcel outputs the webmanifest in that directory and I can't seem to change it
+  - __
   - __/assets/site.webmanifest
