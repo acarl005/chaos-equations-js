@@ -1,8 +1,11 @@
+/*basically make the checkbox invisible. but don't set display: none or else the*/
+/*checkbox cannot be focused and won't be accessible without the mouse!*/
 input[type=checkbox].toggle-switch {
   opacity: 0;
   width: 0;
   margin: 0;
 }
+
 input[type=checkbox].toggle-switch + .toggle-switch__button {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2rem;
@@ -19,28 +22,35 @@ input[type=checkbox].toggle-switch + .toggle-switch__button {
   width: 2rem;
   user-select: none;
 }
-input[type=checkbox].toggle-switch + .toggle-switch__button::after, input[type=checkbox].toggle-switch + .toggle-switch__button::before {
+
+input[type=checkbox].toggle-switch + .toggle-switch__button::after,
+input[type=checkbox].toggle-switch + .toggle-switch__button::before {
   content: '';
   display: block;
   height: 100%;
   position: relative;
   width: 50%;
 }
+
 input[type=checkbox].toggle-switch + .toggle-switch__button::after {
   background: white;
   border-radius: 50%;
   left: 0;
   transition: all 0.4s ease;
 }
+
 input[type=checkbox].toggle-switch + .toggle-switch__button::before {
   display: none;
 }
+
 input[type=checkbox].toggle-switch:checked + .toggle-switch__button {
   background: rgba(255, 255, 255, 0.7);
 }
+
 input[type=checkbox].toggle-switch:checked + .toggle-switch__button::after {
   left: 50%;
 }
+
 input[type=checkbox]:focus + .toggle-switch__button {
   box-shadow: 0 0 10px rgba(81, 203, 238, 1);
 }

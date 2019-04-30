@@ -67,6 +67,7 @@ export default class ChaosCanvas extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // check which things need updating and handle accordingly
     const { props, geometry, points, fadePlane, stats } = this
     const {
       numIters, colorSpread, colorOffset, xPos, yPos,
@@ -165,7 +166,6 @@ export default class ChaosCanvas extends React.Component {
     const { timeKeeper } = this.props
     this.t = timeKeeper.get()
     applyChaos()
-    // required after the first render
     geometry.attributes.position.needsUpdate = true
     renderer.render(scene, camera)
   }

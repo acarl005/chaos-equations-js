@@ -4,7 +4,7 @@ const deltaMinimum = 1e-7
 let history
 
 /**
- * Calculates chaos equation iterations
+ * Calculates chaos equation iterations for one frame
  * Note the tight coupling to the ChaosCanvas context for performance reasons
  */
 export default function chaos() {
@@ -25,25 +25,26 @@ export default function chaos() {
     .fill(null)
     .map(() => ({ x: 0, y: 0 }))
 
-  // Smooth out stepping speed
+  // smooth out stepping speed
   const delta = deltaPerStep
   rollingDelta = rollingDelta * 0.99 + delta * 0.01
 
-  // Apply chaos
+  // apply chaos, run 500 (numSteps) time steps for all points
   for (let step = 0; step < numSteps; step++) {
     let noPointsOnScreen = true
     let x = t
     let y = t
 
+    // calculate the positions of the 800 (numIters) points recursively
     for (let iter = 0; iter < numIters; iter++) {
       const { x: nx, y: ny } = params.evaluate(x, y, t)
 
       const screenXPos = (nx + xPos) * scaleFactor
       const screenYPos = (ny + yPos) * scaleFactor
 
-      // Check if dynamic delta should be adjusted
+      // check if dynamic delta should be adjusted
       if (
-        // only do this 1% of the time?
+        // only do once per 100 iters
         iter % 100 === 0 &&
         screenXPos > camera.left &&
         screenYPos > camera.bottom &&
@@ -63,7 +64,7 @@ export default function chaos() {
       history[iter].x = nx
       history[iter].y = ny
 
-      // Update geometry
+      // update THREE.js geometry directly (for performance reasons)
       const pointInd = (step * numIters + iter) * 3
       geometry.attributes.position.array[pointInd] = screenXPos
       geometry.attributes.position.array[pointInd + 1] = screenYPos
@@ -71,8 +72,9 @@ export default function chaos() {
       y = ny
     }
 
-    // Update t variable
+    // update t variable
     if (noPointsOnScreen) {
+      // go very fast if nothing is on screen
       t += 0.01 * timeFactor
     } else {
       t += rollingDelta * timeFactor

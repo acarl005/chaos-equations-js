@@ -34,12 +34,12 @@ export default class ParametricFunction {
 
   static random() {
     const paramsObj = {}
-    paramsDimensions.forEach(dim => {
+    for (let dim of paramsDimensions) {
       paramsObj[dim] = {}
-      paramsTerms.forEach(term => {
+      for (let term of paramsTerms) {
         paramsObj[dim][term] = Math.floor(Math.random() * 3) - 1
-      })
-    })
+      }
+    }
     return new ParametricFunction(paramsObj)
   }
 

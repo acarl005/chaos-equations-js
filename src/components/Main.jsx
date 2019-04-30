@@ -13,7 +13,7 @@ import SideMenu from "./SideMenu"
 
 import { negate } from "../utils"
 
-// Initial equation parameters from url
+// Initialize some options from URL params
 const searchParams = new URL(window.location.href).searchParams
 const initialShowControls = searchParams.get("controls") !== "false"
 const initialParamCode = (searchParams.get("p") || "")
@@ -75,13 +75,13 @@ export default function Main() {
   }
 
   useEffect(() => {
-    // Browser history state changes
+    // update with the new params on URL update
     window.addEventListener("popstate", e => {
       setParamsString(e.state)
       setParams(ParametricFunction.fromCode(e.state))
       reset()
     })
-    // Mouse movement
+    // update mouse position state
     window.addEventListener("mousemove", e => {
       setShowTransformStats(showTransformStats => {
         if (showTransformStats) {
@@ -93,7 +93,7 @@ export default function Main() {
   }, [])
 
   useEffect(() => {
-    // On initial render and every time paramsString is updated, log it to history
+    // save params to history in local storage on initial render and whenever the state is updated
     if (history.indexOf(paramsString) < 0) {
       const newHistoryItem = `${history.length > 0 ? "," : ""}${paramsString}`
       const newHistory = history + newHistoryItem
@@ -291,7 +291,8 @@ export default function Main() {
             setDraggingCanvas(false)
           },
           onClick: () => {
-            // On click, play/pause if mouse hasn't moved much
+            // it should pause/play toggle when clicked, unless the user is trying to drag
+            // check if the mouse has not moved beyond a spedific radius from the initial click
             if (withinClickRadius) {
               setIsPlaying(negate)
             }
@@ -346,7 +347,7 @@ export default function Main() {
             }
           },
           onTouchEnd: () => {
-            // On tap, play/pause if mouse hasn't moved much
+            // play/pause if the touch is not a drag (falls within specific radius of initial touch)
             if (draggingCanvas && withinClickRadius) {
               setIsPlaying(negate)
             }

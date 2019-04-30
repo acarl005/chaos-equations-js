@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react"
 export default function TimeControls(props) {
   const { tMin, tMax, timeKeeper } = props
 
+  // time is kept out of React state out of performance necessity
+  // basically this event emitter is used as a direct message bus
   const [time, setTime] = useState(tMin)
   useEffect(() => {
     timeKeeper.on("set", setTime)
