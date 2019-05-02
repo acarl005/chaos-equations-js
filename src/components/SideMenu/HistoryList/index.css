@@ -1,11 +1,13 @@
-.history-item:hover,
-.history-item.active {
+.history-item-inner {
+  cursor: pointer;
+}
+.history-item-inner:hover,
+.history-item-inner.active {
   background: rgba(255, 255, 255, 0.3);
 }
 .history-container {
   padding: 5px 8px;
 }
 .history-item {
-  cursor: pointer;
   margin: 0.25rem 0;
 }

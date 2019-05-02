@@ -1,4 +1,6 @@
 import React from "react"
+
+import { Link } from "../../utils"
 import Modal from "../Modal"
 
 export default function InfoModal(props) {
@@ -16,15 +18,13 @@ export default function InfoModal(props) {
       <p>
         Iterates the positions of 800 points via a simple iterative
         calculation with a single parameter - time (t). Based on the equations{" "}
-        <a href="https://github.com/HackerPoet/Chaos-Equations">discovered by HackerPoet</a>.
+        <Link href="https://github.com/HackerPoet/Chaos-Equations">discovered by HackerPoet</Link>.
       </p>
       <p>
-        My source code is <a href="https://github.com/acarl005/chaos-equations-js">here</a>.
+        My source code is <Link href="https://github.com/acarl005/chaos-equations-js">here</Link>.
         This implementation is forked from one written by Jered Danielson.
         More information and source code is available{" "}
-        <a href="https://glitch.com/edit/#!/chaos-equations?path=README.md:1:0">
-          here
-        </a>
+        <Link href="https://glitch.com/edit/#!/chaos-equations?path=README.md:1:0">here</Link>
         .
       </p>
       <h3 className="modal-subheading">Controls:</h3>

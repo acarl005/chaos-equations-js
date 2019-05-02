@@ -2,6 +2,7 @@ import React from "react"
 import statsjs from "stats-js"
 const stats = new statsjs()
 
+import { Link, space as sp } from "../../utils"
 import chaos from "./chaos"
 import * as graphics from "./graphics"
 
@@ -138,7 +139,7 @@ export default class ChaosCanvas extends React.Component {
     const {
       animate,
       renderFrame,
-      props: { isPlaying = true, timeKeeper, showStats, tMin, tMax }
+      props: { isPlaying, timeKeeper, showStats, tMin, tMax }
     } = this
 
     if (isPlaying && !timeKeeper.paused) {
@@ -146,7 +147,7 @@ export default class ChaosCanvas extends React.Component {
 
       if (this.t > tMax) {
         this.t = tMin
-        if (!this.props.repeat && !timeKeeper.paused) {
+        if (!this.props.repeat) {
           this.props.onGenerateNewRandomParams()
         }
       } else if (this.t < tMin) {
@@ -174,7 +175,8 @@ export default class ChaosCanvas extends React.Component {
     return (
       <div ref={el => this.element = el} className="chaos-container">
         <div className="chaos-item">
-          A browser with WebGL is required.
+          A browser with WebGL is required, such as {sp}
+          <Link href="https://www.google.com/chrome/">Google Chrome</Link>
         </div>
       </div>
     )
